@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<testsuites time="0.204" tests="1" failures="0">
-  <testsuite id="0" name="/mnt/c/Users/tnotheis/src/enmeshed/backbone_gh/bkb-files/Files.Application.Tests/bin/Debug/net5.0/Files.Application.Tests.dll" tests="1" failures="0" time="0.204">
-    <testcase classname="Files.Application.Tests.Tests.AutoMapper.AutoMapperProfileTests" name="Files.Application.Tests.Tests.AutoMapper.AutoMapperProfileTests.ProfileIsValid" time="0.2036302" />
-  </testsuite>
-</testsuites>

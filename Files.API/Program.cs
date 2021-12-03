@@ -1,6 +1,7 @@
 ﻿using System;
 using Azure.Identity;
 using Enmeshed.BuildingBlocks.API.Extensions;
+using Enmeshed.Tooling.Extensions;
 using Files.API.Extensions;
 using Files.Infrastructure.Persistence.Database;
 using Microsoft.AspNetCore;
@@ -14,7 +15,7 @@ namespace Files.API
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build()
-                .MigrateDbContext<ApplicationDbContext>((context, services) => { });
+                .MigrateDbContext<ApplicationDbContext>((_, _) => { });
 
             host.Run();
         }
@@ -25,7 +26,7 @@ namespace Files.API
                 .UseKestrel(options =>
                 {
                     options.AddServerHeader = false;
-                    options.Limits.MaxRequestBodySize = 15 * 1024 * 1024; // 15 MB
+                    options.Limits.MaxRequestBodySize = 15.Mebibytes();
                 })
                 .ConfigureAppConfiguration(AddAzureAppConfiguration)
                 .UseStartup<Startup>();

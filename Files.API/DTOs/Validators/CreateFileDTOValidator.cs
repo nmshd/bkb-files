@@ -1,4 +1,5 @@
 ﻿using Enmeshed.BuildingBlocks.Application.FluentValidation;
+using Enmeshed.Tooling.Extensions;
 using FluentValidation;
 
 namespace Files.API.DTOs.Validators
@@ -14,7 +15,7 @@ namespace Files.API.DTOs.Validators
 
             RuleFor(f => f.Content).NotNull();
             RuleFor(f => f.Content.ContentType).In(MIME_TYPE).WithName("Content Type").WithMessage($"The file must have the MIME type {MIME_TYPE}.");
-            RuleFor(f => f.Content.Length).InclusiveBetween(1, 10 * 1024 * 1024).WithName("Content Length");
+            RuleFor(f => f.Content.Length).InclusiveBetween(1, 10.Mebibytes()).WithName("Content Length");
         }
     }
 }

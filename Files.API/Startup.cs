@@ -45,7 +45,7 @@ namespace Files.API
 
             services.AddCustomApplicationInsights();
 
-            services.AddCustomFluentValidation(options => { });
+            services.AddCustomFluentValidation(_ => { });
 
             services.AddDatabase(dbOptions => { dbOptions.DbConnectionString = _configuration.GetSqlDatabaseConfiguration().ConnectionString; });
 

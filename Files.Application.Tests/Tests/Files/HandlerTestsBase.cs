@@ -3,12 +3,12 @@ using Enmeshed.BuildingBlocks.Application.Abstractions.Infrastructure.EventBus;
 using Enmeshed.BuildingBlocks.Application.Abstractions.Infrastructure.Persistence.BlobStorage;
 using Enmeshed.BuildingBlocks.Application.Abstractions.Infrastructure.UserContext;
 using Enmeshed.DevelopmentKit.Identity.ValueObjects;
+using Enmeshed.Tooling;
+using Enmeshed.UnitTestTools.BaseClasses;
 using Files.Application.AutoMapper;
 using Files.Domain.Entities;
 using Files.Infrastructure.Persistence.Database;
 using Moq;
-using Enmeshed.Tooling;
-using Enmeshed.UnitTestTools.BaseClasses;
 
 namespace Files.Application.Tests.Tests.Files
 {

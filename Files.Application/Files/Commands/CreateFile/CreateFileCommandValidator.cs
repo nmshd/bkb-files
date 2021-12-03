@@ -1,7 +1,8 @@
 ﻿using Enmeshed.BuildingBlocks.Application.Abstractions.Exceptions;
 using Enmeshed.BuildingBlocks.Application.FluentValidation;
-using FluentValidation;
 using Enmeshed.Tooling;
+using Enmeshed.Tooling.Extensions;
+using FluentValidation;
 
 namespace Files.Application.Files.Commands.CreateFile
 {
@@ -11,7 +12,7 @@ namespace Files.Application.Files.Commands.CreateFile
         {
             RuleFor(r => r.FileContent)
                 .DetailedNotNull()
-                .NumberOfBytes(1, 15 * 1024 * 1024); // 15 MB
+                .NumberOfBytes(1, 15.Mebibytes());
 
             RuleFor(r => r.CipherHash)
                 .DetailedNotNull()
@@ -33,7 +34,7 @@ namespace Files.Application.Files.Commands.CreateFile
                 .WithMessage(m => $"{nameof(m.Owner)} and {nameof(m.OwnerSignature)} have to be provided either both or none.");
 
             RuleFor(r => r.EncryptedProperties)
-                .NumberOfBytes(0, 1 * 1024 * 1024); // 0-1 MB
+                .NumberOfBytes(0, 1.Mebibytes()); // 0-1 MB
         }
     }
 }

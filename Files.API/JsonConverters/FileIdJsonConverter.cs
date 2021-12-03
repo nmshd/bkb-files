@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Files.Domain.Entities;
 using Enmeshed.StronglyTypedIds;
+using Files.Domain.Entities;
 
 namespace Files.API.JsonConverters
 {
