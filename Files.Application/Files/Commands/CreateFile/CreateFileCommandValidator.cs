@@ -34,7 +34,7 @@ namespace Files.Application.Files.Commands.CreateFile
                 .WithMessage(m => $"{nameof(m.Owner)} and {nameof(m.OwnerSignature)} have to be provided either both or none.");
 
             RuleFor(r => r.EncryptedProperties)
-                .NumberOfBytes(0, 1.Mebibytes()); // 0-1 MB
+                .NumberOfBytes(0, 1.Mebibytes());
         }
     }
 }
