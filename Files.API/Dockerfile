@@ -12,4 +12,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim
 EXPOSE 80
 WORKDIR /app
 COPY --from=build-env /app .
+
+LABEL org.opencontainers.image.source = "https://github.com/nmshd/bkb-files"
+
 ENTRYPOINT ["dotnet", "Files.API.dll"]
