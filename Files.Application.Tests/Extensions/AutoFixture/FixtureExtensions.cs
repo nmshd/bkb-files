@@ -1,9 +1,8 @@
 ﻿using AutoFixture;
 using AutoFixture.Dsl;
 using Enmeshed.DevelopmentKit.Identity.ValueObjects;
-using Files.Application.Tests.Tests;
 
-namespace Files.Application.Tests.AutoFixture.Extensions
+namespace Files.Application.Tests.Extensions.AutoFixture
 {
     public static class FixtureExtensions
     {

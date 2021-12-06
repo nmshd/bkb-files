@@ -3,7 +3,7 @@ using AutoFixture.Dsl;
 using Enmeshed.DevelopmentKit.Identity.ValueObjects;
 using Files.Domain.Entities;
 
-namespace Files.Application.Tests.Tests.Extensions
+namespace Files.Application.Tests.Extensions
 {
     public static class FileMetadataPostprocessComposerExtensions
     {

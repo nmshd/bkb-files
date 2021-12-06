@@ -10,7 +10,7 @@ using Files.Domain.Entities;
 using Files.Infrastructure.Persistence.Database;
 using Moq;
 
-namespace Files.Application.Tests.Tests.Files
+namespace Files.Application.Tests
 {
     public abstract class HandlerTestsBase : RequestHandlerTestsBase<ApplicationDbContext>
     {
