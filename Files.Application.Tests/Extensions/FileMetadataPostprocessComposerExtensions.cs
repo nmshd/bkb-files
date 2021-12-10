@@ -1,5 +1,4 @@
-﻿using System;
-using AutoFixture.Dsl;
+﻿using AutoFixture.Dsl;
 using Enmeshed.DevelopmentKit.Identity.ValueObjects;
 using Files.Domain.Entities;
 

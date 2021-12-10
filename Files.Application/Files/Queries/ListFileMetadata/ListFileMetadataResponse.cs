@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Enmeshed.BuildingBlocks.Application.Pagination;
+﻿using Enmeshed.BuildingBlocks.Application.Pagination;
 using Files.Application.Files.DTOs;
 
 namespace Files.Application.Files.Queries.ListFileMetadata

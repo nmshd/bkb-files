@@ -1,6 +1,4 @@
-﻿using System;
-using Enmeshed.DevelopmentKit.Identity.ValueObjects;
-using Microsoft.AspNetCore.Http;
+﻿using Enmeshed.DevelopmentKit.Identity.ValueObjects;
 
 namespace Files.API.DTOs
 {

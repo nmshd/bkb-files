@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-
-namespace Files.API.Extensions
+﻿namespace Files.API.Extensions
 {
     public static class IHostEnvironmentExtensions
     {

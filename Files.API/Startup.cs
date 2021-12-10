@@ -1,5 +1,4 @@
-﻿using System;
-using Enmeshed.BuildingBlocks.API.Extensions;
+﻿using Enmeshed.BuildingBlocks.API.Extensions;
 using Files.API.Extensions;
 using Files.API.JsonConverters;
 using Files.Application;
@@ -7,10 +6,6 @@ using Files.Application.Extensions;
 using Files.Infrastructure.EventBus;
 using Files.Infrastructure.Persistence.Database;
 using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Files.API
 {
