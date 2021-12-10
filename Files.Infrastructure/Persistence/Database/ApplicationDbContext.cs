@@ -4,23 +4,22 @@ using Files.Infrastructure.Persistence.Database.ValueConverters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Files.Infrastructure.Persistence.Database
+namespace Files.Infrastructure.Persistence.Database;
+
+public class ApplicationDbContext : AbstractDbContextBase
 {
-    public class ApplicationDbContext : AbstractDbContextBase
+    public ApplicationDbContext() { }
+
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+    public DbSet<FileMetadata> FileMetadata { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        public ApplicationDbContext() { }
+        base.OnModelCreating(builder);
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        builder.UseValueConverter(new FileIdEntityFrameworkValueConverter(new ConverterMappingHints(FileId.MAX_LENGTH)));
 
-        public DbSet<FileMetadata> FileMetadata { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.UseValueConverter(new FileIdEntityFrameworkValueConverter(new ConverterMappingHints(FileId.MAX_LENGTH)));
-
-            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-        }
+        builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }

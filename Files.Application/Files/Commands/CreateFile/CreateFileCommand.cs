@@ -1,20 +1,18 @@
-﻿using System;
-using Enmeshed.DevelopmentKit.Identity.ValueObjects;
+﻿using Enmeshed.DevelopmentKit.Identity.ValueObjects;
 using MediatR;
 
-namespace Files.Application.Files.Commands.CreateFile
+namespace Files.Application.Files.Commands.CreateFile;
+
+public class CreateFileCommand : IRequest<CreateFileResponse>
 {
-    public class CreateFileCommand : IRequest<CreateFileResponse>
-    {
-        public byte[] FileContent { get; set; }
+    public byte[] FileContent { get; set; }
 
-        public IdentityAddress Owner { get; set; }
-        public byte[] OwnerSignature { get; set; }
+    public IdentityAddress Owner { get; set; }
+    public byte[] OwnerSignature { get; set; }
 
-        public byte[] CipherHash { get; set; }
+    public byte[] CipherHash { get; set; }
 
-        public DateTime ExpiresAt { get; set; }
+    public DateTime ExpiresAt { get; set; }
 
-        public byte[] EncryptedProperties { get; set; }
-    }
+    public byte[] EncryptedProperties { get; set; }
 }

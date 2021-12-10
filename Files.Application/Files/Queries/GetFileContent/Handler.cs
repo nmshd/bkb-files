@@ -1,30 +1,27 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Enmeshed.BuildingBlocks.Application.Abstractions.Infrastructure.Persistence.BlobStorage;
 using Enmeshed.BuildingBlocks.Application.Abstractions.Infrastructure.Persistence.Database;
 using Enmeshed.BuildingBlocks.Application.Abstractions.Infrastructure.UserContext;
 
-namespace Files.Application.Files.Queries.GetFileContent
+namespace Files.Application.Files.Queries.GetFileContent;
+
+public class Handler : RequestHandlerBase<GetFileContentQuery, GetFileContentResponse>
 {
-    public class Handler : RequestHandlerBase<GetFileContentQuery, GetFileContentResponse>
+    private readonly IBlobStorage _blobStorage;
+
+    public Handler(IDbContext dbContext, IUserContext userContext, IMapper mapper, IBlobStorage blobStorage) : base(dbContext, userContext, mapper)
     {
-        private readonly IBlobStorage _blobStorage;
+        _blobStorage = blobStorage;
+    }
 
-        public Handler(IDbContext dbContext, IUserContext userContext, IMapper mapper, IBlobStorage blobStorage) : base(dbContext, userContext, mapper)
+    public override async Task<GetFileContentResponse> Handle(GetFileContentQuery request, CancellationToken cancellationToken)
+    {
+        await ValidateFileExistsInDatabase(request.Id);
+
+        var content = await _blobStorage.FindAsync(request.Id);
+        return new GetFileContentResponse
         {
-            _blobStorage = blobStorage;
-        }
-
-        public override async Task<GetFileContentResponse> Handle(GetFileContentQuery request, CancellationToken cancellationToken)
-        {
-            await ValidateFileExistsInDatabase(request.Id);
-
-            var content = await _blobStorage.FindAsync(request.Id);
-            return new GetFileContentResponse
-            {
-                FileContent = content
-            };
-        }
+            FileContent = content
+        };
     }
 }
