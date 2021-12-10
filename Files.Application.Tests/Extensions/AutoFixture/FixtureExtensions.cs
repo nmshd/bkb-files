@@ -8,11 +8,7 @@ public static class FixtureExtensions
 {
     public static ICustomizationComposer<T> BuildWithDefaultCustomizations<T>(this Fixture fixture)
     {
-        fixture.Customize<IdentityAddress>(x => x.FromFactory(() =>
-        {
-            ;
-            return TestData.IdentityAddresses.ADDRESS_1;
-        }));
+        fixture.Customize<IdentityAddress>(x => x.FromFactory(() => TestData.IdentityAddresses.ADDRESS_1));
         return fixture.Build<T>();
     }
 

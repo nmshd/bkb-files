@@ -31,12 +31,14 @@ public static class IServiceCollectionExtensions
             {
                 options.InvalidModelStateResponseFactory = context =>
                 {
-                    var firstPropertyWithError = context.ModelState.First(p => p.Value.Errors.Count > 0);
+                    var firstPropertyWithError = context.ModelState.First(p => p.Value != null && p.Value.Errors.Count > 0);
                     var nameOfPropertyWithError = firstPropertyWithError.Key;
-                    var firstError = firstPropertyWithError.Value.Errors.First();
+                    var firstError = firstPropertyWithError.Value!.Errors.First();
                     var firstErrorMessage = !string.IsNullOrWhiteSpace(firstError.ErrorMessage)
                         ? firstError.ErrorMessage
-                        : firstError.Exception?.Message;
+                        : firstError.Exception != null
+                            ? firstError.Exception.Message
+                            : "";
 
                     var formattedMessage = string.IsNullOrEmpty(nameOfPropertyWithError) ? firstErrorMessage : $"'{nameOfPropertyWithError}': {firstErrorMessage}";
                     context.HttpContext.Response.ContentType = "application/json";
