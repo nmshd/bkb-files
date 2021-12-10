@@ -6,7 +6,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="IntegrationEvents\" />
+	  <Compile Remove="IntegrationEvents\**" />
+	  <EmbeddedResource Remove="IntegrationEvents\**" />
+	  <None Remove="IntegrationEvents\**" />
 	</ItemGroup>
 
 	<ItemGroup>
