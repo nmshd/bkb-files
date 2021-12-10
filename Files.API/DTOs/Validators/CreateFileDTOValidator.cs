@@ -2,20 +2,19 @@
 using Enmeshed.Tooling.Extensions;
 using FluentValidation;
 
-namespace Files.API.DTOs.Validators
+namespace Files.API.DTOs.Validators;
+
+public class CreateFileDTOValidator : AbstractValidator<CreateFileDTO>
 {
-    public class CreateFileDTOValidator : AbstractValidator<CreateFileDTO>
+    private const string MIME_TYPE = "application/octet-stream";
+
+    public CreateFileDTOValidator()
     {
-        private const string MIME_TYPE = "application/octet-stream";
-
-        public CreateFileDTOValidator()
-        {
-            CascadeMode = CascadeMode.Stop;
+        CascadeMode = CascadeMode.Stop;
 
 
-            RuleFor(f => f.Content).NotNull();
-            RuleFor(f => f.Content.ContentType).In(MIME_TYPE).WithName("Content Type").WithMessage($"The file must have the MIME type {MIME_TYPE}.");
-            RuleFor(f => f.Content.Length).InclusiveBetween(1, 10.Mebibytes()).WithName("Content Length");
-        }
+        RuleFor(f => f.Content).NotNull();
+        RuleFor(f => f.Content.ContentType).In(MIME_TYPE).WithName("Content Type").WithMessage($"The file must have the MIME type {MIME_TYPE}.");
+        RuleFor(f => f.Content.Length).InclusiveBetween(1, 10.Mebibytes()).WithName("Content Length");
     }
 }
