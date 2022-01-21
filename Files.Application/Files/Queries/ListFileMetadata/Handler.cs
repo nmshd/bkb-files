@@ -25,16 +25,10 @@ public class Handler : RequestHandlerBase<ListFileMetadataQuery, ListFileMetadat
         if (request.Ids.Any())
             query = query.WithIdIn(request.Ids);
 
-        var metadata = await query
-            .ProjectTo<FileMetadataDTO>(_mapper.ConfigurationProvider)
-            .OrderBy(f => f.CreatedAt)
-            .Paged(request.PaginationFilter)
-            .ToListAsync(cancellationToken);
-
-        var totalRecords = await query
-            .CountAsync(cancellationToken);
-
-        var response = new ListFileMetadataResponse(metadata, request.PaginationFilter, totalRecords);
+        var dbPaginationResult = await query.OrderAndPaginate(d => d.CreatedAt, request.PaginationFilter);
+        var items = _mapper.Map<FileMetadataDTO[]>(dbPaginationResult.ItemsOnPage);
+        
+        var response = new ListFileMetadataResponse(items, request.PaginationFilter, dbPaginationResult.TotalNumberOfItems);
 
         return response;
     }
