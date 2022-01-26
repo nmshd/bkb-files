@@ -14,11 +14,16 @@ public class ApplicationDbContext : AbstractDbContextBase
 
     public DbSet<FileMetadata> FileMetadata { get; set; }
 
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+
+        configurationBuilder.Properties<FileId>().AreUnicode(false).AreFixedLength().HaveMaxLength(FileId.MAX_LENGTH).HaveConversion<FileIdEntityFrameworkValueConverter>();
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
-        builder.UseValueConverter(new FileIdEntityFrameworkValueConverter(new ConverterMappingHints(FileId.MAX_LENGTH)));
 
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
